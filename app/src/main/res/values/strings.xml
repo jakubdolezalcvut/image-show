@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">Image Show</string>
+
+    <string name="page_title">Image Show</string>
+    <string name="login_hint">Login</string>
+    <string name="password_hint">Password</string>
+    <string name="show_btn">Show</string>
+
+    <string name="validation_error_login">Login is mandatory</string>
+    <string name="validation_error_password">Please, type in a password</string>
+
+</resources>
