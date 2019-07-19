@@ -8,7 +8,7 @@
     <dimen name="space_32">32dp</dimen>
 
     <!-- Pages -->
-    <dimen name="login_height">200dp</dimen>
+    <dimen name="login_height">260dp</dimen>
     <dimen name="photo_image_size">200dp</dimen>
 
 </resources>

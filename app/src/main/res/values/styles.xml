@@ -23,7 +23,7 @@
     </style>
 
     <style name="AppTheme.ProgressBar" parent="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal.NoPadding">
-        <item name="android:visibility">visible</item>
+        <item name="android:visibility">gone</item>
         <item name="android:elevation">4dp</item>
         <item name="android:indeterminate">true</item>
         <item name="mpb_useIntrinsicPadding">false</item>
@@ -42,6 +42,7 @@
 
     <style name="AppTheme.Login" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:ems">32</item>
+        <item name="android:maxLines">1</item>
         <item name="android:hint">@string/login_hint</item>
         <item name="android:imeOptions">actionNext</item>
         <item name="android:inputType">text</item>
@@ -49,6 +50,7 @@
 
     <style name="AppTheme.Password" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:ems">32</item>
+        <item name="android:maxLines">1</item>
         <item name="android:hint">@string/password_hint</item>
         <item name="android:imeOptions">actionSend</item>
         <item name="android:inputType">textPassword</item>

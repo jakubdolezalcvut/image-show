@@ -4,15 +4,17 @@ import io.reactivex.Single
 import okhttp3.*
 import java.io.IOException
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class OkHttpImageClient @Inject constructor(
     private val okHttpClient: OkHttpClient,
     private val passwordEncryptor: PasswordEncryptor
 ) : ImageClient {
 
-    override fun getImage(url: String, login: String, password: String): Single<ByteArray> {
+    override fun getImage(login: String, password: String): Single<ByteArray> {
         val request = Request.Builder()
-            .url(url)
+            .url(IMAGE_URL)
             .header(HEADER_AUTH, passwordEncryptor.encrypt(password))
             .post(getRequestBody(login))
             .build()
@@ -47,5 +49,6 @@ class OkHttpImageClient @Inject constructor(
         private const val HEADER_AUTH = "Authorization"
         private const val BODY_LOGIN = "username="
         private const val CONTENT_TYPE = "application/x-www-form-urlencoded"
+        private const val IMAGE_URL = "https://mobility.cleverlance.com/download/bootcamp/image.php"
     }
 }

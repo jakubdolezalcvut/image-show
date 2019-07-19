@@ -33,7 +33,8 @@ class ImageFragment : Fragment() {
         networkStateRenderer = NetworkStateRenderer(
             containerView = coordinator,
             progressBar = progressBar,
-            button = showBtn
+            button = showBtn,
+            image = imageView
         )
         showBtn.setOnClickListener { _ ->
             loginValidator.validate(
@@ -62,6 +63,7 @@ class ImageFragment : Fragment() {
             })
             image.observe(viewLifecycleOwner, Observer { imageBitmap ->
                 imageView.setImageBitmap(imageBitmap)
+                imageView.visibility = View.VISIBLE
             })
             show()
         }

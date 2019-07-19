@@ -62,13 +62,17 @@ dependencies {
     implementation("me.zhanghai.android.materialprogressbar:library:1.6.1")
 
     // NETWORKING LIBRARIES
-    val okHttpVersion = "3.14.2"
-    implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
-    implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
+    val retrofitVersion = "2.6.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-scalars:$retrofitVersion")
+    implementation("com.squareup.okhttp3:logging-interceptor:3.14.2")
 
     // TOOTHPICK
-    implementation("com.github.stephanenicolas.toothpick:toothpick-runtime:2.1.0")
-    kapt("com.github.stephanenicolas.toothpick:toothpick-compiler:2.1.0")
+    val toothpickVersion = "2.1.0"
+    implementation("com.github.stephanenicolas.toothpick:toothpick-runtime:$toothpickVersion")
+    kapt("com.github.stephanenicolas.toothpick:toothpick-compiler:$toothpickVersion")
 
     // RX JAVA
     implementation("io.reactivex.rxjava2:rxjava:2.2.7")

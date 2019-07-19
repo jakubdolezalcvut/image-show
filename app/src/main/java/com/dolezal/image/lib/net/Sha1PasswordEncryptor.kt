@@ -16,13 +16,13 @@ class Sha1PasswordEncryptor : PasswordEncryptor {
         val digestBytes = messageDigest.digest(passwordBytes)
 
         return digestBytes.toUByteArray().joinToString(FORMAT_SEPARATOR) { uByte ->
-            FORMAT_HEXA.format(uByte)
+            FORMAT_HEXA.format(uByte.toInt())
         }
     }
 
     companion object {
         private const val DIGEST_NAME = "SHA-1"
         private const val FORMAT_SEPARATOR = ""
-        private const val FORMAT_HEXA = "%02X"
+        private const val FORMAT_HEXA = "%02x"
     }
 }

@@ -7,7 +7,9 @@ import com.dolezal.image.lib.net.ImageClient
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class DefaultImageDataSource @Inject constructor(
     private val imageClient: ImageClient,
     private val imageDecoder: ImageDecoder,
@@ -15,20 +17,14 @@ class DefaultImageDataSource @Inject constructor(
 ) : ImageDataSource {
 
     override fun getImage(login: String, password: String): Single<Bitmap> {
-        val cacheCall = imageCache.getImage(IMAGE_URL).toSingle()
-
-        val networkCall = imageClient.getImage(IMAGE_URL, login, password)
+        val networkCall = imageClient.getImage(login, password)
             .subscribeOn(Schedulers.io())
             .map { payload ->
                 imageDecoder.decode(payload)
             }
             .doOnSuccess { image ->
-                imageCache.putImage(IMAGE_URL, image)
+                imageCache.putImage(login, image)
             }
-        return Single.concat(cacheCall, networkCall).firstOrError()
-    }
-
-    companion object {
-        private const val IMAGE_URL = "https://mobility.cleverlance.com/download/bootcamp/image.php"
+        return imageCache.getImage(login).switchIfEmpty(networkCall)
     }
 }
