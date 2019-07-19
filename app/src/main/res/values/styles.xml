@@ -31,14 +31,13 @@
         <item name="mpb_indeterminateTint">@color/colorSecondaryVariant</item>
     </style>
 
-    <style name="AppTheme.EmptyPrompt" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/colorSecondary</item>
+    <style name="AppTheme.ErrorBanner" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/colorError</item>
     </style>
 
     <style name="AppTheme.Page">
         <item name="android:background">@color/colorBackground</item>
-    </style>s
+    </style>
 
     <style name="AppTheme.Login" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:ems">32</item>
@@ -46,6 +45,7 @@
         <item name="android:hint">@string/login_hint</item>
         <item name="android:imeOptions">actionNext</item>
         <item name="android:inputType">text</item>
+        <item name="android:selectAllOnFocus">true</item>
     </style>
 
     <style name="AppTheme.Password" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -54,6 +54,7 @@
         <item name="android:hint">@string/password_hint</item>
         <item name="android:imeOptions">actionSend</item>
         <item name="android:inputType">textPassword</item>
+        <item name="android:selectAllOnFocus">true</item>
     </style>
 
     <style name="AppTheme.LoginBtn" parent="Widget.MaterialComponents.Button">

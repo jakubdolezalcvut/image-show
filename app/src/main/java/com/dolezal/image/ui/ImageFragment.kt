@@ -31,8 +31,8 @@ class ImageFragment : Fragment() {
 
         loginValidator = LoginValidator(resources)
         networkStateRenderer = NetworkStateRenderer(
-            containerView = coordinator,
             progressBar = progressBar,
+            errorBanner = errorBanner,
             button = showBtn,
             image = imageView
         )
@@ -47,6 +47,8 @@ class ImageFragment : Fragment() {
                     passwordTextInput.error = error
                 },
                 onSuccess = { login, password ->
+                    loginTextInput.error = null
+                    passwordTextInput.error = null
                     imageViewModel.show(login, password)
                 })
         }

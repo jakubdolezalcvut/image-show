@@ -6,17 +6,17 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import com.dolezal.image.*
-import com.google.android.material.snackbar.Snackbar
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar
 
 class NetworkStateRenderer(
-    private val containerView: View,
     private val progressBar: MaterialProgressBar,
+    private val errorBanner: TextView,
     private val button: Button,
     private val image: ImageView
 ) {
-    private val context = containerView.context
+    private val context = progressBar.context
 
     fun render(state: NetworkState) {
         Log.i(TAG, state.toString())
@@ -30,6 +30,8 @@ class NetworkStateRenderer(
 
     private fun onLoading() {
         progressBar.visibility = View.VISIBLE
+        errorBanner.visibility = View.INVISIBLE
+
         button.isEnabled = false
         image.visibility = View.VISIBLE
         image.setImageResource(R.drawable.loading_wheel)
@@ -45,11 +47,12 @@ class NetworkStateRenderer(
 
     private fun onError(throwable: Throwable) {
         progressBar.visibility = View.GONE
+
+        errorBanner.text = throwable.message ?: throwable::class.java.simpleName
+        errorBanner.visibility = View.VISIBLE
+
         button.isEnabled = true
         image.visibility = View.INVISIBLE
-
-        val message = throwable.message ?: throwable::class.java.simpleName
-        Snackbar.make(containerView, message, Snackbar.LENGTH_LONG).show()
     }
 
     companion object {
