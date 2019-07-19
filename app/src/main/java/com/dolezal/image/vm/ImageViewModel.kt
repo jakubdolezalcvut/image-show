@@ -2,6 +2,7 @@ package com.dolezal.image.vm
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.annotation.RestrictTo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -25,6 +26,12 @@ class ImageViewModel @RestrictTo(RestrictTo.Scope.TESTS) constructor(
 
     val networkState: LiveData<NetworkState> = _networkState
     val image: LiveData<Bitmap> = _image
+
+    init {
+        networkState.observeForever { state ->
+            Log.i(TAG, state.toString())
+        }
+    }
 
     fun show() {
         image.value?.let { imageBitmap ->
@@ -54,6 +61,8 @@ class ImageViewModel @RestrictTo(RestrictTo.Scope.TESTS) constructor(
     }
 
     companion object {
+        private const val TAG = "ImageViewModel"
+
         @SuppressLint("RestrictedApi")
         fun create(scope: Scope): ImageViewModel {
             return ImageViewModel(

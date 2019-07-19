@@ -4,7 +4,6 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
 }
-
 android {
     compileSdkVersion(28)
 
@@ -16,16 +15,13 @@ android {
         versionCode = 1
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     dexOptions {
         javaMaxHeapSize = "2g"
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
     buildTypes {
         getByName("debug") {
             isDebuggable = true
@@ -35,17 +31,21 @@ android {
         }
     }
 }
-
 androidExtensions {
     isExperimental = true
 }
-
+tasks {
+    withType<Test> {
+        useJUnitPlatform {
+            includeEngines("spek2")
+        }
+    }
+}
 kapt {
     arguments {
         arg("toothpick_registry_package_name", "com.dolezal.image")
     }
 }
-
 dependencies {
     // KOTLIN RUNTIME
     implementation(embeddedKotlin("stdlib"))
@@ -80,8 +80,14 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
 
     // TESTING LIBRARIES
-    testImplementation("junit:junit:4.12")
-    testImplementation("org.mockito:mockito-core:2.23.0")
+    testImplementation (embeddedKotlin("reflect"))
+    testImplementation("org.spekframework.spek2:spek-dsl-jvm:2.0.5")
+    testImplementation("org.spekframework.spek2:spek-runner-junit5:2.0.5")
+
+    testImplementation("org.amshove.kluent:kluent:1.49")
+    testImplementation("org.amshove.kluent:kluent-android:1.49")
+    testImplementation("io.mockk:mockk:1.9.3")
+
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
     androidTestImplementation("androidx.test:rules:1.2.0")
     androidTestImplementation("androidx.test:runner:1.2.0")

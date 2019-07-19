@@ -9,9 +9,9 @@ class LoginValidator(
     fun validate(
         login: String,
         password: String,
-        onLoginError: (String) -> Unit,
-        onPasswordError: (String) -> Unit,
-        onSuccess: (String, String) -> Unit
+        onLoginError: (String) -> Unit = {},
+        onPasswordError: (String) -> Unit = {},
+        onSuccess: (String, String) -> Unit = { _, _ ->}
     ) {
         val isLoginValid = login.isNotBlank()
         val isPasswordValid = password.isNotBlank()

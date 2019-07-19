@@ -11,7 +11,7 @@ class ImageApplication : Application() {
         super.onCreate()
 
         Toothpick.openScope(applicationContext).apply {
-            installModules(ImageToothpickModule, AppToothpickModule)
+            installModules(ImageToothpickModule)
         }
     }
 }
